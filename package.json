@@ -6,9 +6,9 @@
   "author": "Prashant Singh <prashant.s2922@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Prashant-S29/pravah-frontend/issues"
+    "url": "https://github.com/Prashant-S29/pravah2025-frontend.git/issues"
   },
-  "homepage": "https://github.com/Prashant-S29/pravah-frontend#readme",
+  "homepage": "https://github.com/Prashant-S29/pravah2025-frontend.git#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -66,6 +66,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Prashant-S29/pravah-frontend.git"
+    "url": "https://github.com/Prashant-S29/pravah2025-frontend.git"
   }
 }
