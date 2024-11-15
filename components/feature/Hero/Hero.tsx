@@ -1,70 +1,69 @@
 'use client';
 
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import Image from 'next/image';
-import React, { useLayoutEffect, useRef } from 'react';
 
-import { mountain_one, mountain_three, sky } from '@/public';
+// Fonts
+import { fonts } from '@/fonts';
+
+// Assets
+import { cultural_photos } from '@/public';
+
+// Components
+import { HeroBackdrop, ImageInfo } from '@/components/common';
+
+import { cubicBezier, motion } from 'framer-motion';
+import { ImagePopupAnimationVariants } from '@/animation';
+import { useHandleImageInfo } from '@/global/stateHooks';
 
 export const Hero: React.FC = () => {
-  const container = useRef<HTMLDivElement>(null);
-
-  const sky_ref = useRef<HTMLImageElement>(null);
-  const mountain_one_ref = useRef<HTMLImageElement>(null);
-  const mountain_two_ref = useRef<HTMLImageElement>(null);
-  const mountain_three_ref = useRef<HTMLImageElement>(null);
-
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        scrub: true,
-        start: 'top top',
-        end: 'bottom top',
-        markers: true,
-      },
-    });
-    timeline
-      .fromTo(mountain_one_ref.current, { y: 200 }, { y: -100 })
-      .fromTo(mountain_two_ref.current, { y: 100, ease: 'power1.inOut' }, { y: -100 }, '0')
-      .fromTo(mountain_three_ref.current, { y: 0, ease: 'power1.inOut' }, { y: -150 }, '0')
-      .fromTo(sky_ref.current, { y: 0, ease: 'power1.inOut' }, { y: -100 }, '0');
-  }, []);
+  const { setImageInfo, setShowImageInfo } = useHandleImageInfo();
 
   return (
     <>
-      <div ref={container} className="relative h-screen w-full items-center justify-center overflow-hidden">
-        <Image
-          src={sky}
-          ref={sky_ref}
-          alt="sky"
-          width={2000}
-          height={2000}
-          unoptimized
-          className="fixed left-0 top-0 w-full object-cover"
-        />
-        <Image
-          src={mountain_one}
-          ref={mountain_one_ref}
-          alt="mountain_one"
-          width={2000}
-          height={2000}
-          unoptimized
-          className="fixed left-0 top-[80px] z-30"
-        />
-        <Image
-          src={mountain_three}
-          ref={mountain_three_ref}
-          alt="mountain_three"
-          width={2000}
-          height={2000}
-          unoptimized
-          className="fixed right-0 top-[362px] w-full"
-        />
+      <HeroBackdrop />
+      <div className="relative z-40 min-h-[500vh] w-full bg-[#fffff7] px-[200px] pt-[50px]">
+        <section className="leading-none">
+          <p className={`text-center ${fonts.funkyVibes.className} text-2xl`}>Welcome to</p>
+          <p className={`text-center ${fonts.funkyVibes.className} -mt-2 text-[48px]`}>North India</p>
+        </section>
+
+        <section className="flex justify-evenly">
+          <motion.div
+            variants={ImagePopupAnimationVariants}
+            initial="initial"
+            whileInView={{
+              rotate: 10,
+              scale: 1,
+            }}
+            exit="exit"
+            transition={{ duration: 0.5, ease: cubicBezier(0.5, 0, 0.5, 1) }}
+            viewport={{ once: true }}
+            className="relative w-fit"
+          >
+            <Image
+              src={cultural_photos.four}
+              unoptimized
+              alt="cultural_photo"
+              width={800}
+              height={800}
+              className="mt-3 w-[400px]"
+            />
+            <div
+              className="absolute bottom-[100px] right-0 z-50"
+              onClick={() => {
+                setShowImageInfo(true);
+                setImageInfo({
+                  imageTitle: 'hero',
+                  imageDescription: 'hello',
+                });
+              }}
+            >
+              <ImageInfo />
+            </div>
+          </motion.div>
+        </section>
       </div>
-      <div className="relative z-40 h-screen w-full bg-pink-400"></div>
     </>
   );
 };

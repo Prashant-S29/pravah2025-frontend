@@ -1,4 +1,5 @@
 import { Montserrat } from 'next/font/google';
+import localFont from 'next/font/local';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -6,6 +7,9 @@ const montserrat = Montserrat({
   display: 'swap',
 });
 
+const funkyVibes = localFont({ src: './funkyVibes.ttf' });
+
 export const fonts = {
   montserrat,
+  funkyVibes,
 };
