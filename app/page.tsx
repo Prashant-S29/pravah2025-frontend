@@ -1,10 +1,14 @@
 import React from 'react';
 
+// Components
+import { Hero } from '@/components/feature';
+
 const Home = () => {
   return (
-    <main className="flex min-h-screen w-full items-center justify-center">
-      <p>Pravah 2025</p>
-    </main>
+    <>
+      <Hero />
+      <div className="h-screen w-full" />
+    </>
   );
 };
 
