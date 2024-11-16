@@ -13,3 +13,10 @@ export type SiteConfig = {
     twitter: string;
   };
 };
+
+export type MapArea = 'north' | 'west' | 'central' | 'east' | 'south';
+
+export type ImageInfoPropsType = {
+  imageTitle: string;
+  imageDescription: string;
+};
