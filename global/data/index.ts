@@ -1,7 +1,5 @@
-import { ImageCanvasDataType } from '@/types';
-
 export const ImageCanvasData: {
-  id: ImageCanvasDataType;
+  id: string;
   images: string[];
 }[] = [
   {
